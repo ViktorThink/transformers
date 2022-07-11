@@ -195,7 +195,16 @@ def export_pytorch(
                     print()
                     print("model_inputs keys",model_inputs.keys())
                     print()
-                    print("past",model_inputs["past_key_values"])
+                    item = model_inputs["past_key_values"]
+                    print("past_key_values", end=": ")
+                    for i in range(5):
+                        if type(item) == tuple or type(item) == list:
+                            print(len(item),end=", ")
+                            item = item[0]
+                        else:
+                            print(item.shape)
+                            break
+                    print("past",)
                 onnx_export(
                     model,
                     (model_inputs,),
