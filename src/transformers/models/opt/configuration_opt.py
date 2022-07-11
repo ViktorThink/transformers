@@ -150,7 +150,7 @@ class OPTConfig(PretrainedConfig):
         # see https://github.com/facebookresearch/metaseq/pull/164
         self._remove_final_layer_norm = _remove_final_layer_norm
 
-
+# Copied from transformers.models.gpt2.configuration_gpt2.GPT2OnnxConfig
 class OPTOnnxConfig(OnnxConfigWithPast):
     def __init__(
         self,
@@ -177,11 +177,11 @@ class OPTOnnxConfig(OnnxConfigWithPast):
 
     @property
     def num_layers(self) -> int:
-        return self._config.n_layer
+        return self._config.num_hidden_layers
 
     @property
     def num_attention_heads(self) -> int:
-        return self._config.n_head
+        return self._config.num_attention_heads
 
     def generate_dummy_inputs(
         self,
@@ -214,9 +214,14 @@ class OPTOnnxConfig(OnnxConfigWithPast):
                     past_key_values_length,
                     self._config.hidden_size // self.num_attention_heads,
                 )
+                print("\nPAST SHAPE", past_shape)
+                print()
+                
                 ordered_inputs["past_key_values"] = [
                     (torch.zeros(past_shape), torch.zeros(past_shape)) for _ in range(self.num_layers)
                 ]
+                print("\ordered_inputs[past_key_values] len", len(ordered_inputs["past_key_values"]))
+                print()
 
         ordered_inputs["attention_mask"] = common_inputs["attention_mask"]
         if self.use_past:

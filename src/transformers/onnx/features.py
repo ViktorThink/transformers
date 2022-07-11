@@ -346,8 +346,6 @@ class FeaturesManager:
             "default-with-past",
             "causal-lm",
             "causal-lm-with-past",
-            "sequence-classification",
-            "token-classification",
             onnx_config_cls="models.opt.OPTOnnxConfig",
         ),
         "perceiver": supported_features_mapping(
