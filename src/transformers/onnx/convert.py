@@ -187,6 +187,15 @@ def export_pytorch(
                     else:
                         raise err
             else:
+                if True:
+                    print()
+                    print("Dynamic axes", {name: axes for name, axes in chain(config.inputs.items(), config.outputs.items())})
+                    print()
+                    print("onnx_outputs",onnx_outputs)
+                    print()
+                    print("model_inputs keys",model_inputs.keys())
+                    print()
+                    print("past",model_inputs["past_key_values"])
                 onnx_export(
                     model,
                     (model_inputs,),
