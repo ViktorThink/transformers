@@ -175,10 +175,13 @@ class OPTOnnxConfig(OnnxConfigWithPast):
 
         return common_inputs
 
-
     @property
     def num_layers(self) -> int:
-        return self._config.num_hidden_layers
+        return self._config.n_layer
+
+    # @property
+    # def num_layers(self) -> int:
+    #     return self._config.num_hidden_layers
 
     @property
     def num_attention_heads(self) -> int:
