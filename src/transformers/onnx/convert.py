@@ -195,6 +195,8 @@ def export_pytorch(
                     print()
                     print("model_inputs keys",model_inputs.keys())
                     print()
+                    print("model_input shape",model_inputs["input_ids"].shape)
+                    print()
                     item = model_inputs["past_key_values"]
                     print("past_key_values", end=": ")
                     for i in range(5):
