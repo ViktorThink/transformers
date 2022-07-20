@@ -206,7 +206,10 @@ def export_pytorch(
                         else:
                             print(item.shape)
                             break
-                    print("past",)
+                        
+                        
+                        
+                    model(model_inputs)
                 onnx_export(
                     model,
                     (model_inputs,),
