@@ -525,8 +525,11 @@ class OPTDecoder(OPTPreTrainedModel):
         if attention_mask is not None:
             # [bsz, seq_len] -> [bsz, 1, tgt_seq_len, src_seq_len]
             expanded_attn_mask = _expand_mask(attention_mask, inputs_embeds.dtype, tgt_len=input_shape[-1])
+            
+            print()
             print("expanded_attn_mask",expanded_attn_mask)
-            print("combined_attention_mask")
+            print()
+            print("combined_attention_mask",combined_attention_mask)
             
             if combined_attention_mask is None:
                 combined_attention_mask = expanded_attn_mask
