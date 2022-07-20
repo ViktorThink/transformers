@@ -530,11 +530,14 @@ class OPTDecoder(OPTPreTrainedModel):
             print("expanded_attn_mask",expanded_attn_mask)
             print()
             print("combined_attention_mask",combined_attention_mask)
+            print()
+            print("End")
             
             if combined_attention_mask is None:
                 combined_attention_mask = expanded_attn_mask
             else:
-                combined_attention_mask = expanded_attn_mask + combined_attention_mask
+                pass
+                #combined_attention_mask = expanded_attn_mask + combined_attention_mask
             
 
         return combined_attention_mask
