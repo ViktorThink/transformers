@@ -61,7 +61,11 @@ def main():
     if args.preprocessor == "auto":
         preprocessor = get_preprocessor(args.model)
     elif args.preprocessor == "tokenizer":
-        preprocessor = AutoTokenizer.from_pretrained(args.model)
+        try:
+            preprocessor = AutoTokenizer.from_pretrained(args.model)
+        except:
+            logger.info(f"Error using standard tokenizer settings, testing specifying use_fast=False")
+            preprocessor = AutoTokenizer.from_pretrained(args.model, use_fast=False)
     elif args.preprocessor == "feature_extractor":
         preprocessor = AutoFeatureExtractor.from_pretrained(args.model)
     elif args.preprocessor == "processor":
